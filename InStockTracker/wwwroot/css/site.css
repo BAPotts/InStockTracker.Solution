@@ -59,7 +59,7 @@ body {
 /* custom styles
 -------------------------------------------------------------- */
 .content {
-  margin-top: 5rem;
+  margin-top: 8rem;
 }
 
 .card {
@@ -67,11 +67,32 @@ body {
   margin-top: 1rem;
 }
 
+.card-header, .navbar {
+  background-color: #96adc8;
+}
+
+.navbar > a {
+  color: #FFE1A8;
+}
+
 .card-img-bottom {
   margin: 1rem;
   width: 80%;
 }
 
+.nav-link {
+  color: #972d07;
+}
+
+.nav-logo {
+  float: left;
+  width: 62%;
+}
+
 #button-addon3 {
   color: solid black;
+}
+
+#navbardrop {
+  color: #972d07;
 }
