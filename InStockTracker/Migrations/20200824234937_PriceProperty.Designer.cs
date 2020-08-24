@@ -3,14 +3,16 @@ using System;
 using InStockTracker.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InStockTracker.Migrations
 {
     [DbContext(typeof(InStockTrackerContext))]
-    partial class InStockTrackerContextModelSnapshot : ModelSnapshot
+    [Migration("20200824234937_PriceProperty")]
+    partial class PriceProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace InStockTracker.Models
 {
@@ -12,6 +13,7 @@ namespace InStockTracker.Models
     public string Name { get; set; }
     public string Manufacturer { get; set; }
     public string Description { get; set; }
+    public decimal Price { get; set; }
     public int Stock { get; set; }
     public string ImgTitle { get; set; }
     public byte[] Img { get; set; }
