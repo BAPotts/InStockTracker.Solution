@@ -28,13 +28,21 @@ namespace InStockTracker.Controllers
 
     public ActionResult Create()
     {
+      ViewBag.CategoryId = _db.Categories.ToList();
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Product product)
+    public ActionResult Create(Product product, int[] CategoryId)
     {
       _db.Products.Add(product);
+      if (CategoryId.Length != 0)
+      {
+        foreach(int id in CategoryId)
+        {
+          _db.CategoryProduct.Add(new CategoryProduct() { CategoryId = id, ProductId = product.ProductId });
+        }
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -51,14 +59,22 @@ namespace InStockTracker.Controllers
     public ActionResult Edit(int id)
     {
       Product thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == id);
+      ViewBag.CategoryId = _db.Categories.ToList();
       return View(thisProduct);
     }
 
 
     [HttpPost]
-    public ActionResult Edit(Product product)
+    public ActionResult Edit(Product product, int[] CategoryId)
     {
       _db.Entry(product).State = EntityState.Modified;
+      if (CategoryId.Length != 0)
+      {
+        foreach(int id in CategoryId)
+        {
+          _db.CategoryProduct.Add(new CategoryProduct() { CategoryId = id, ProductId = product.ProductId });
+        }
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
