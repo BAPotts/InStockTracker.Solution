@@ -19,11 +19,18 @@ namespace InStockTracker.Controllers
 
     public ActionResult Index(string name)
     {
-      var products = _db.Products
-        .Include(category => category.Categories)
+      var query = _db.Products.AsQueryable();
+      
+      if (name != null)
+      {
+        query = query.Where(entry => entry.Name.Contains(name));
+      }
+
+      query.Include(category => category.Categories)
         .ThenInclude(join => join.Category)
         .ToList();
-      return View(products);
+      
+      return View(query);
     }
 
     public ActionResult Create()

@@ -2,13 +2,11 @@
 	Layout = "_Layout";
 }
 
-<form asp-controller="Product" asp-action="Index">
+<form asp-controller="Products" asp-action="Index">
 	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Search">
+		<input type="text" class="form-control" placeholder="Search" name="name" id="name">
 		<div class="input-group-append">
-			<button class="btn btn-secondary" type="submit">
-				<i class="fa fa-search"></i>
-			</button>
+			<button class="btn btn-secondary" type="submit">Search</button>
 		</div>
 	</div>
 </form>
