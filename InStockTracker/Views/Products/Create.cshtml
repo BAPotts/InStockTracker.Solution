@@ -1,15 +1,12 @@
 @{
   Layout = "_Layout";
 }
-
 @* @model InStockTracker.Models.Product *@
 
-<h1>@Model.Name</h1>
+<h1>Add a new product:</h1>
 
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.ProductId)
-
   <div class="form-group">
     @Html.LabelFor(model => model.Name)
     @Html.TextBoxFor(model => model.Name, new { @class="form-control" })
