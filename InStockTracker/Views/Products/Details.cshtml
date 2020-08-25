@@ -5,11 +5,15 @@
 @model InStockTracker.Models.Product
 
 <h1>@Model.Name</h1>
+@if (!string.IsNullOrEmpty(Model.ImgTitle))
+{
+  <img src="@ViewBag.ImageDataUrl" />
+}
 
 <p>@Model.Price</p>
 <p>@Model.Manufacturer</p>
 <p>@Model.Description</p>
-<p>@Model.Stock</p>
+<p>No. In Stock: @Model.Stock</p>
 
 @foreach(var join in Model.Categories)
 {

@@ -1,9 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
 using InStockTracker.Models;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace InStockTracker.Controllers
@@ -50,6 +52,10 @@ namespace InStockTracker.Controllers
         .Include(category => category.Categories)
         .ThenInclude(join => join.Category)
         .FirstOrDefault(product => product.ProductId == id);
+      if (!string.IsNullOrEmpty(thisProduct.ImgTitle))
+      {
+        ViewBag.ImageDataUrl = RetrieveImage(id);
+      }
       return View(thisProduct);
     }
 
@@ -87,6 +93,38 @@ namespace InStockTracker.Controllers
       _db.Products.Remove(thisProduct);
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    public ActionResult AddPhoto(int id)
+    {
+      Product thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == id);
+      return View(thisProduct);
+    }
+
+    [HttpPost]
+    public IActionResult UploadPhoto(int ProductId)
+    {
+      Product thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == ProductId);
+      thisProduct.ImgTitle = "FileName";
+      foreach(var file in Request.Form.Files)
+      {
+        MemoryStream ms = new MemoryStream();
+        file.CopyTo(ms);
+        thisProduct.Img = ms.ToArray();
+        ms.Close();
+        ms.Dispose();
+        _db.SaveChanges();
+      }
+
+      return RedirectToAction("Details", new { id = ProductId });
+    }
+
+    private string RetrieveImage(int id)
+    {
+      Product thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == id);
+      string imageBase64Data = Convert.ToBase64String(thisProduct.Img);
+      string imageDataURL = string.Format("data:image/jpg;base64, {0}", imageBase64Data);
+      return imageDataURL;
     }
   }
 }
