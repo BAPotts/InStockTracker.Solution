@@ -43,7 +43,7 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  background-image: "./../img/background.jpg";
+  background-image: linear-gradient(#FABC3C, #E5625E);
   margin-bottom: 60px;
 }
 
