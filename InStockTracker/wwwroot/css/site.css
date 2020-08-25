@@ -43,6 +43,7 @@ html {
 
 body {
   /* Margin bottom by footer height */
+  background-image: "./../img/background.jpg";
   margin-bottom: 60px;
 }
 

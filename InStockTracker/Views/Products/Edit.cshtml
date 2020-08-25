@@ -23,7 +23,9 @@
     @Html.LabelFor(model => model.Description)
     @Html.TextBoxFor(model => model.Description, new { @class="form-control" })
 
-    @Html.Label("Select Categories:")
+    <label for="Title">
+      Select Categories:
+    </label>
     @foreach (var name in ViewBag.CategoryId)
     {
       @Html.Label(@name.Title)

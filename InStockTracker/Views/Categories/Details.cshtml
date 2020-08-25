@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@* @model Inenumerable<InStockTracker.Models.Product> *@
+@* @model InStockTracker.Models.Category *@
+
+<h1>@ViewBag.CategoryName</h1>
+
+<div class="card-columns">
+  @foreach(var product in Model)
+  {
+  <div class="card">
+    <div class="card-header"><h4 class="card-title">@product.Name</h4></div>
+    <div class="card-body">
+      <p>@product.Description</p>
+      <p>@product.Manufacturer</p>
+      <p>@product.Price</p>
+    </div>
+    <a href="product/details/@product.ProductId" class="stretched-link"></a>
+  </div>
+  }
+</div>
