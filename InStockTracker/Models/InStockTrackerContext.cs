@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InStockTracker.Models
 {
-  public class InStockTrackerContext : DbContext
+  public class InStockTrackerContext : IdentityDbContext<User>
   {
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
@@ -13,6 +13,7 @@ namespace InStockTracker.Models
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+      base.OnModelCreating(builder);
       builder.Entity<Product>()
       .HasData(
         new Product { ProductId = 1, Name = "Webcam", Manufacturer = "Logitech", Description = "Logitech webcam", Price = 99.99m, Stock = 10 },

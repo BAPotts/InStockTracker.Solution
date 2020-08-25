@@ -53,8 +53,8 @@ namespace InStockTracker.Controllers
       Product thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == id);
       return View(thisProduct);
     }
-    
-    
+
+
     [HttpPost]
     public ActionResult Edit(Product product)
     {
