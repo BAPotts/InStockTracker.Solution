@@ -43,8 +43,10 @@ html {
 
 body {
   /* Margin bottom by footer height */
+  background-image: "./../img/background.jpg";
   margin-bottom: 60px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -53,4 +55,45 @@ body {
   /* Set the fixed height of the footer here */
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
+}
+
+/* custom styles
+-------------------------------------------------------------- */
+.content {
+  margin-top: 8rem;
+}
+
+.card {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.card-header, .navbar {
+  background-color: #96adc8;
+}
+
+.navbar > a {
+  color: #FFE1A8;
+}
+
+.card-img-bottom {
+  margin: 1rem;
+  width: 80%;
+}
+
+.nav-link {
+  color: #972d07;
+}
+
+.nav-logo {
+  float: left;
+  width: 62%;
+}
+
+#button-addon3 {
+  color: solid black;
+}
+
+#navbardrop {
+  color: #972d07;
 }

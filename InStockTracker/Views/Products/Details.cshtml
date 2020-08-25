@@ -1,0 +1,18 @@
+@{
+  Layout = "_Layout";
+}
+
+@* @model InStockTracker.Models.Product *@
+
+<h1>@Model.Name</h1>
+
+<p>@Model.Manufacturer</p>
+<p>@Model.Description</p>
+<p>@Model.Price</p>
+
+@foreach(var join in Model.Categories)
+{
+  <p><a href="/Categories/Details/{join.Category.CategoryId}">@join.Category.Title</a></p>
+}
+
+<a href="/products/edit/{Model.ProductId}" class="btn btn-info">Edit Product Info</a>

@@ -1,8 +1,28 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	Layout = "_Layout";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<form asp-controller="Product" asp-action="Index">
+	<div class="input-group">
+		<input type="text" class="form-control" placeholder="Search">
+		<div class="input-group-append">
+			<button class="btn btn-secondary" type="submit">
+				<i class="fa fa-search"></i>
+			</button>
+		</div>
+	</div>
+</form>
+
+<div class="card-columns">
+	<div class="card">
+		<div class="card-header"><h4 class="card-title">Appliances</h4></div>
+		<img class="card-img-bottom" src="~/img/appliance.png" alt="appliance image" />
+		<a href="/products/appliance" class="stretched-link"></a>
+	</div>
+
+	<div class="card">
+		<div class="card-header"><h4 class="card-title">Clothes</h4></div>
+		<img class="card-img-bottom" src="~/img/clothes.png" alt="clothes image" />
+		<a href="/products/clothes" class="stretched-link"></a>
+	</div>
 </div>
