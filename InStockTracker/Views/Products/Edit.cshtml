@@ -1,0 +1,34 @@
+@{
+  Layout = "_Layout";
+}
+
+@* @model InStockTracker.Models.Product *@
+
+<h1>@Model.Name</h1>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.ProductId)
+
+  <div class="form-group">
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name, new { @class="form-control" })
+
+    @Html.LabelFor(model => model.Price)
+    @Html.TextBoxFor(model => model.Price, new { @class="form-control", @type="number", @pattern="[$][\d]+.[\d]{2}" })
+
+    @Html.LabelFor(model => model.Manufacturer)
+    @Html.TextBoxFor(model => model.Manufacturer, new { @class="form-control" })
+
+    @Html.LabelFor(model => model.Description)
+    @Html.TextBoxFor(model => model.Description, new { @class="form-control" })
+
+    @Html.Label("Select Categories:")
+    @foreach (var name in ViewBag.CategoryId)
+    {
+      @Html.Label(@name.Title)
+      @Html.CheckBox("CategoryId", false, new {name.CategoryId })
+    }
+  </div>
+  <input type="submit" value="Edit Product" class="btn" />
+}
