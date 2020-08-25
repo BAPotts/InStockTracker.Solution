@@ -28,7 +28,7 @@ namespace InStockTracker.Controllers
 
     public ActionResult Create()
     {
-      Viewbag.CategoryId = _db.Categories.ToList();
+      ViewBag.CategoryId = _db.Categories.ToList();
       return View();
     }
 
@@ -56,7 +56,7 @@ namespace InStockTracker.Controllers
     public ActionResult Edit(int id)
     {
       Product thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == id);
-      Viewbag.CategoryId = _db.Categories.ToList();
+      ViewBag.CategoryId = _db.Categories.ToList();
       return View(thisProduct);
     }
 

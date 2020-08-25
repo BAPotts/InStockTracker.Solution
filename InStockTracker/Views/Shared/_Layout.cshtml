@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>In Stock Tracker</title>
@@ -10,7 +12,7 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-			<nav class="navbar navbar-expand-sm navbar-dark fixed-top shadow-lg">
+			<nav class="navbar navbar-expand-sm navbar-dark fixed-top">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="/home/index">
 						<img class="nav-logo" src="~/img/logo.png">
@@ -25,15 +27,21 @@
 							<a href="/home/search" class="dropdown-item">Super Search</a>
             </div>
           </li>
-					<li class="nav-item">
-						<a class="nav-link" href="/account/login">Log In</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/account/register">Register</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/account/index">Your Account</a>
-					</li>
+					@if(!User.Identity.IsAuthenticated)
+					{
+						<li class="nav-item">
+							<a class="nav-link" href="/account/login">Log In</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/account/register">Register</a>
+						</li>
+					}
+					else
+					{
+						<li class="nav-item">
+							<a class="nav-link" href="/account/index">Your Account</a>
+						</li>
+					}
         </ul>
       </nav>
       <div class="content">
