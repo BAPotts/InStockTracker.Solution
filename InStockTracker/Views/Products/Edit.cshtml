@@ -2,7 +2,7 @@
   Layout = "_Layout";
 }
 
-@* @model InStockTracker.Models.Product *@
+@model InStockTracker.Models.Product 
 
 <h1>@Model.Name</h1>
 
@@ -26,7 +26,7 @@
     <label for="Title">
       Select Categories:
     </label>
-    @foreach (var name in ViewBag.CategoryId)
+    @foreach (Category name in ViewBag.CategoryId)
     {
       @Html.Label(@name.Title)
       @Html.CheckBox("CategoryId", false, new {name.CategoryId })

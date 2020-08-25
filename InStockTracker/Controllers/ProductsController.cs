@@ -17,7 +17,7 @@ namespace InStockTracker.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
+    public ActionResult Index(string name)
     {
       var products = _db.Products
         .Include(category => category.Categories)
