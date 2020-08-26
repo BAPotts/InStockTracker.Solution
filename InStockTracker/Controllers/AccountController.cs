@@ -63,6 +63,15 @@ namespace InStockTracker.Controllers
       return RedirectToAction("Index", "Products");
     }
 
+    [HttpPost]
+    public ActionResult DeleteCartItem(int cartItemId)
+    {
+      var thisCartItem = _db.CartItems.FirstOrDefault(item => item.CartItemId == cartItemId);
+      _db.Remove(thisCartItem);
+      _db.SaveChanges();
+      return RedirectToAction("Cart");
+    }
+
     [AllowAnonymous]
     public ActionResult Register()
     {

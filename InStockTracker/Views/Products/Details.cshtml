@@ -19,11 +19,17 @@
 {
   <p><a href="/Categories/Details/{join.Category.CategoryId}">@join.Category.Title</a></p>
 }
-@using (Html.BeginForm("AddCartItem", "Account"))
+@using (Html.BeginForm("AddCartItem", "Account", new { @class="form-inline"}))
 {
   @Html.Hidden("productId", Model.ProductId)
-  <input type=number name="quantity" placeholder="Qty">
-  <input type="submit" value="Add to cart">
+  <label class="sr-only"></label>
+  <div class="input-group w-25">
+    <div class="input-group-prepend">
+      <div class="input-group-text">Qty</div>
+    </div>
+    <input class="form-control" type="number" name="quantity" value="1">
+    <input class="btn btn-primary" type="submit" value="Add to cart">
+  </div>
 }
-<a href="/products/addphoto/@Model.ProductId" class="btn btn-info">Add a Photo</a>
-<a href="/products/edit/@Model.ProductId" class="btn btn-info">Edit Product Info</a>
+<a href="/products/addphoto/@Model.ProductId" class="btn btn-info mt-3">Add a Photo</a><br>
+<a href="/products/edit/@Model.ProductId" class="btn btn-info mt-2">Edit Product Info</a>

@@ -9,8 +9,17 @@
 
 <p>Items</p>
 <ul>
+  @{ decimal total = 0; }
   @foreach (CartItem item in Model)
   {
-    <li>@item.Product.Name Qty: @item.Quantity</li>
+    decimal itemPrice = item.Product.Price * item.Quantity;
+    total += itemPrice;
+    <li>@item.Product.Name Qty: @item.Quantity Price: @itemPrice.ToString("C") </li>
+    @using (Html.BeginForm("DeleteCartItem", "Account"))
+    {
+      @Html.Hidden("cartItemId", item.CartItemId)
+      <input type="submit" value="Delete" class="btn btn-danger">
+    }
   }
+  <li>Total: @total.ToString("C")</li>
 </ul>
