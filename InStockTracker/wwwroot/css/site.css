@@ -72,6 +72,11 @@ body {
   background-color: #5bc0de;
 }
 
+.details-image {
+  max-height: 30rem;
+  max-width: 30rem;
+}
+
 .navbar > a {
   color: #FFE1A8;
 }
