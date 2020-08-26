@@ -165,8 +165,7 @@ namespace InStockTracker.Migrations
                         .IsRequired()
                         .HasMaxLength(255);
 
-                    b.Property<string>("Price")
-                        .IsRequired();
+                    b.Property<decimal>("Price");
 
                     b.Property<int>("Stock");
 
@@ -181,7 +180,7 @@ namespace InStockTracker.Migrations
                             Description = "Logitech webcam",
                             Manufacturer = "Logitech",
                             Name = "Webcam",
-                            Price = "$99.99",
+                            Price = 99.99m,
                             Stock = 10
                         },
                         new
@@ -190,7 +189,7 @@ namespace InStockTracker.Migrations
                             Description = "Razer mechanical keyboard",
                             Manufacturer = "Razer",
                             Name = "Keyboard",
-                            Price = "$149.99",
+                            Price = 149.99m,
                             Stock = 5
                         },
                         new
@@ -199,7 +198,7 @@ namespace InStockTracker.Migrations
                             Description = "Razer gaming mouse",
                             Manufacturer = "Razer",
                             Name = "Mouse",
-                            Price = "$49.99",
+                            Price = 49.99m,
                             Stock = 6
                         },
                         new
@@ -208,7 +207,7 @@ namespace InStockTracker.Migrations
                             Description = "Blue snowball microphone",
                             Manufacturer = "Blue",
                             Name = "Microphone",
-                            Price = "$49.99",
+                            Price = 49.99m,
                             Stock = 11
                         });
                 });

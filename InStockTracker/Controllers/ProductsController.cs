@@ -36,11 +36,13 @@ namespace InStockTracker.Controllers
       return View(query);
     }
 
+
     public ActionResult Create()
     {
       ViewBag.CategoryId = _db.Categories.ToList();
       return View();
     }
+
 
     [HttpPost]
     public ActionResult Create(Product product, int[] CategoryId)
@@ -79,11 +81,21 @@ namespace InStockTracker.Controllers
 
 
     [HttpPost]
-    public ActionResult Edit(Product product, int[] CategoryId)
+    public ActionResult Edit(Product product, int[] categoryId)
     {
       _db.Entry(product).State = EntityState.Modified;
+      int categoryIdCount = _db.CategoryProduct.Count();
+
+      for(int id = 1; id <= categoryIdCount; id++)
+      {
+        CategoryProduct thisCateProd = _db.CategoryProduct.FirstOrDefault(item => item.ProductId == product.ProductId && item.CategoryId == id);
+        if(thisCateProd != null)
+        {
+        _db.CategoryProduct.Remove(thisCateProd);
+        }
+      }
       
-      foreach(int id in CategoryId)
+      foreach(int id in categoryId)
       {
         _db.CategoryProduct.Add(new CategoryProduct() {CategoryId = id, ProductId = product.ProductId });
       }

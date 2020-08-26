@@ -18,10 +18,10 @@ namespace InStockTracker.Models
       base.OnModelCreating(builder);
       builder.Entity<Product>()
       .HasData(
-        new Product { ProductId = 1, Name = "Webcam", Manufacturer = "Logitech", Description = "Logitech webcam", Price = "$99.99", Stock = 10 },
-        new Product { ProductId = 2, Name = "Keyboard", Manufacturer = "Razer", Description = "Razer mechanical keyboard", Price = "$149.99", Stock = 5 },
-        new Product { ProductId = 3, Name = "Mouse", Manufacturer = "Razer", Description = "Razer gaming mouse", Price = "$49.99", Stock = 6 },
-        new Product { ProductId = 4, Name = "Microphone", Manufacturer = "Blue", Description = "Blue snowball microphone", Price = "$49.99", Stock = 11 }
+        new Product { ProductId = 1, Name = "Webcam", Manufacturer = "Logitech", Description = "Logitech webcam", Price = 99.99m, Stock = 10 },
+        new Product { ProductId = 2, Name = "Keyboard", Manufacturer = "Razer", Description = "Razer mechanical keyboard", Price = 149.99m, Stock = 5 },
+        new Product { ProductId = 3, Name = "Mouse", Manufacturer = "Razer", Description = "Razer gaming mouse", Price = 49.99m, Stock = 6 },
+        new Product { ProductId = 4, Name = "Microphone", Manufacturer = "Blue", Description = "Blue snowball microphone", Price = 49.99m, Stock = 11 }
       );
 
       builder.Entity<Category>()

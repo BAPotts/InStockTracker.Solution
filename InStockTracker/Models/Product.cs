@@ -19,7 +19,7 @@ namespace InStockTracker.Models
     [MaxLength(1000)]
     public string Description { get; set; }
     [Required(ErrorMessage = "Price is required")]
-    public string Price { get; set; }
+    public decimal Price { get; set; }
     [Required(ErrorMessage = "Stock is required")]
     [Range(1, 1000, ErrorMessage = "Stock must be between 1 and 1000")]
     public int Stock { get; set; }

@@ -17,7 +17,6 @@
             <li data-target="#myCarousel" data-slide-to="@i"></li>
           }
         </ol>
-
         <div class="carousel-inner">
 
           <div class="carousel-item active">
@@ -76,3 +75,16 @@
     </div>
   </div>
 </div>
+
+@using (Html.BeginForm("AddCartItem", "Account", new { @class="form-inline"}))
+{
+  @Html.Hidden("productId", Model.ProductId)
+  <label class="sr-only"></label>
+  <div class="input-group w-25">
+    <div class="input-group-prepend">
+      <div class="input-group-text">Qty</div>
+    </div>
+    <input class="form-control" type="number" name="quantity" value="1">
+    <input class="btn btn-primary" type="submit" value="Add to cart">
+  </div>
+}
