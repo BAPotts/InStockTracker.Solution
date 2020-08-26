@@ -47,7 +47,18 @@ namespace InStockTracker.Controllers
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
-      _db.CartItems.Add(new CartItem { ProductId = productId, Quantity = quantity, User = currentUser});
+      var thisCartItem = _db.CartItems.FirstOrDefault(p => p.ProductId == productId && p.User == currentUser);
+
+      if(thisCartItem != null)
+      {
+        thisCartItem.Quantity += quantity;
+        _db.Entry(thisCartItem).State = EntityState.Modified;
+      }
+      else
+      {
+        _db.CartItems.Add(new CartItem { ProductId = productId, Quantity = quantity, User = currentUser});
+      }
+
       _db.SaveChanges();
       return RedirectToAction("Index", "Products");
     }

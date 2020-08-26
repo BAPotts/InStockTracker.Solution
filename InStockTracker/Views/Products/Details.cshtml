@@ -10,7 +10,7 @@
   <img src="@ViewBag.ImageDataUrl" />
 }
 
-<p>@Model.Price</p>
+<p>@Model.Price.ToString("C")</p>
 <p>@Model.Manufacturer</p>
 <p>@Model.Description</p>
 <p>No. In Stock: @Model.Stock</p>
@@ -19,6 +19,11 @@
 {
   <p><a href="/Categories/Details/{join.Category.CategoryId}">@join.Category.Title</a></p>
 }
-
+@using (Html.BeginForm("AddCartItem", "Account"))
+{
+  @Html.Hidden("productId", Model.ProductId)
+  <input type=number name="quantity" placeholder="Qty">
+  <input type="submit" value="Add to cart">
+}
 <a href="/products/addphoto/@Model.ProductId" class="btn btn-info">Add a Photo</a>
 <a href="/products/edit/@Model.ProductId" class="btn btn-info">Edit Product Info</a>
