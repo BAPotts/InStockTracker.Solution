@@ -26,7 +26,7 @@
     <label for="Title">
       Select Categories:
     </label>
-    @foreach (var name in ViewBag.CategoryId)
+    @foreach (Category name in ViewBag.CategoryId)
     {
       <label>@name.Title</label>
       @Html.CheckBox("CategoryId", false, new {name.CategoryId })

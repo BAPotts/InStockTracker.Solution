@@ -33,6 +33,25 @@ namespace InStockTracker.Controllers
       return View(currentUser);
     }
 
+    public async Task<ActionResult> Cart()
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var userCartItems = _db.CartItems.Where(item => item.User.Id == currentUser.Id)
+        .Include(item => item.Product).ToList();
+      return View(userCartItems);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> AddCartItem(int productId, int quantity)
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      _db.CartItems.Add(new CartItem { ProductId = productId, Quantity = quantity, User = currentUser});
+      _db.SaveChanges();
+      return RedirectToAction("Index", "Products");
+    }
+
     [AllowAnonymous]
     public ActionResult Register()
     {

@@ -14,7 +14,14 @@
       <p>@product.Manufacturer</p>
       <p>@product.Price</p>
     </div>
-    <a href="/products/details/@product.ProductId" class="stretched-link"></a>
+
+    <a href="/product/details/@product.ProductId" class="stretched-link"></a>
+    @using (Html.BeginForm("AddCartItem", "Account"))
+    {
+      @Html.Hidden("productId", @product.ProductId)
+      <input type=number name="quantity" placeholder="Qty">
+      <input type="submit" value="Add to cart">
+    }
   </div>
 }
 </div>

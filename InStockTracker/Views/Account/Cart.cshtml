@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+@using InStockTracker.Models
+@model List<InStockTracker.Models.CartItem>
+
+<h2>Cart</h2>
+
+<p>Items</p>
+<ul>
+  @foreach (CartItem item in Model)
+  {
+    <li>@item.Product.Name Qty: @item.Quantity</li>
+  }
+</ul>
