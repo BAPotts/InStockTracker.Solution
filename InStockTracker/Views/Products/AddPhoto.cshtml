@@ -1,0 +1,11 @@
+@{
+  Layout = "_Layout";
+}
+
+@model InStockTracker.Models.Product
+
+<form asp-action="UploadPhoto" asp-controller="Products" method="post" enctype="multipart/form-data">
+  @Html.HiddenFor(p => p.ProductId)
+  <input type="file" id="file1" name="file1" multiple="multiple" />
+  <button type="submit" class="btn btn-info">Upload Picture</button>
+</form>

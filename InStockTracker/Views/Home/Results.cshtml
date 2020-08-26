@@ -2,10 +2,10 @@
   Layout = "_Layout";
 }
 
-@* @model IEnumerable<InStockTracker.Models.Product>
+@model IEnumerable<InStockTracker.Models.Product>
 
 <div class="card-columns">
-foreach(Product product in Model)
+@foreach(var product in Model)
 {
   <div class="card">
     <div class="card-header"><h4 class="card-title">@product.Name</h4></div>
@@ -17,4 +17,4 @@ foreach(Product product in Model)
     <a href="product/details/@product.ProductId" class="stretched-link"></a>
   </div>
 }
-</div> *@
+</div>

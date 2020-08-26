@@ -2,17 +2,23 @@
   Layout = "_Layout";
 }
 
-@* @model InStockTracker.Models.Product *@
+@model InStockTracker.Models.Product
 
 <h1>@Model.Name</h1>
+@if (!string.IsNullOrEmpty(Model.ImgTitle))
+{
+  <img src="@ViewBag.ImageDataUrl" />
+}
 
+<p>@Model.Price</p>
 <p>@Model.Manufacturer</p>
 <p>@Model.Description</p>
-<p>@Model.Price</p>
+<p>No. In Stock: @Model.Stock</p>
 
 @foreach(var join in Model.Categories)
 {
   <p><a href="/Categories/Details/{join.Category.CategoryId}">@join.Category.Title</a></p>
 }
 
-<a href="/products/edit/{Model.ProductId}" class="btn btn-info">Edit Product Info</a>
+<a href="/products/addphoto/@Model.ProductId" class="btn btn-info">Add a Photo</a>
+<a href="/products/edit/@Model.ProductId" class="btn btn-info">Edit Product Info</a>

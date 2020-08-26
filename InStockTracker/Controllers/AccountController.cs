@@ -50,7 +50,6 @@ namespace InStockTracker.Controllers
       _db.CartItems.Add(new CartItem { ProductId = productId, Quantity = quantity, User = currentUser});
       _db.SaveChanges();
       return RedirectToAction("Index", "Products");
-
     }
 
     [AllowAnonymous]

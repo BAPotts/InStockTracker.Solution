@@ -2,7 +2,7 @@
   Layout = "_Layout";
 }
 
-@model InStockTracker.Models.Product 
+@model InStockTracker.Models.Product
 
 <h1>@Model.Name</h1>
 
@@ -15,7 +15,7 @@
     @Html.TextBoxFor(model => model.Name, new { @class="form-control" })
 
     @Html.LabelFor(model => model.Price)
-    @Html.TextBoxFor(model => model.Price, new { @class="form-control", @type="number", @pattern="[$][0-9]+.[0-9]{2}" })
+    @Html.TextBoxFor(model => model.Price, new { @class="form-control", @pattern="[$][0-9]+.[0-9]{2}" })
 
     @Html.LabelFor(model => model.Manufacturer)
     @Html.TextBoxFor(model => model.Manufacturer, new { @class="form-control" })
@@ -28,7 +28,7 @@
     </label>
     @foreach (Category name in ViewBag.CategoryId)
     {
-      @Html.Label(@name.Title)
+      <label>@name.Title</label>
       @Html.CheckBox("CategoryId", false, new {name.CategoryId })
     }
   </div>
