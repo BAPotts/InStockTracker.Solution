@@ -25,5 +25,14 @@ namespace InStockTracker.Models
     public string ImgTitle { get; set; }
     public byte[] Img { get; set; }
     public virtual ICollection<CategoryProduct> Categories { get; set; }
+
+    public static decimal ConvertPrice(string price)
+    {
+      if (price.Substring(0, 1) == "$")
+      {
+        return decimal.Parse(price.Substring(1));
+      }
+      return decimal.Parse(price);
+    }
   }
 }
