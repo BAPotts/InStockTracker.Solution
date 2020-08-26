@@ -80,13 +80,20 @@ namespace InStockTracker.Controllers
     public ActionResult Edit(Product product, int[] categoryId)
     {
       _db.Entry(product).State = EntityState.Modified;
+      int categoryIdCount = _db.CategoryProduct.Count();
+
+      for(int id = 1; id <= categoryIdCount; id++)
+      {
+        CategoryProduct thisCateProd = _db.CategoryProduct.FirstOrDefault(item => item.ProductId == product.ProductId && item.CategoryId == id);
+        if(thisCateProd != null)
+        {
+        _db.CategoryProduct.Remove(thisCateProd);
+        }
+      }
       
       foreach(int id in categoryId)
       {
-        if(!_db.CategoryProduct.Any(item => item.ProductId == product.ProductId && item.CategoryId == id))
-        {
-          _db.CategoryProduct.Add(new CategoryProduct() {CategoryId = id, ProductId = product.ProductId });
-        }
+        _db.CategoryProduct.Add(new CategoryProduct() {CategoryId = id, ProductId = product.ProductId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
