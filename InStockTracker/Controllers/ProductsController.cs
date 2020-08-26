@@ -29,10 +29,21 @@ namespace InStockTracker.Controllers
         query = query.Where(entry => entry.Name.Contains(name));
       }
 
-      query.Include(category => category.Categories)
+      query
+        .Include(category => category.Categories)
         .ThenInclude(join => join.Category)
+        .Include(product => product.Images)
         .ToList();
-      
+      Dictionary<string, string> productImages = new Dictionary<string, string>();
+      foreach(var product in query)
+      {
+        if (product.Images.Any())
+        {
+          string ImageData = RetrieveImage(product.Images[0].ImageId);
+          productImages.Add(product.Name, ImageData);
+        }
+      }
+      ViewBag.ImageDictionary = productImages;
       return View(query);
     }
 
@@ -166,11 +177,11 @@ namespace InStockTracker.Controllers
       }
       if (!string.IsNullOrEmpty(minPrice))
       {
-        productQuery = productQuery.Where(p => Product.ConvertPrice(p.Price) > Product.ConvertPrice(minPrice));
+        productQuery = productQuery.Where(p => p.Price > Product.ConvertPrice(minPrice));
       }
       if (!string.IsNullOrEmpty(maxPrice))
       {
-        productQuery = productQuery.Where(p => Product.ConvertPrice(p.Price) < Product.ConvertPrice(maxPrice));
+        productQuery = productQuery.Where(p => p.Price < Product.ConvertPrice(maxPrice));
       }
       IEnumerable<Product> products = productQuery
         .Include(p => p.Categories)

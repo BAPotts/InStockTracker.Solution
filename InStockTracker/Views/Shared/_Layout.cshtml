@@ -30,11 +30,12 @@
 					@if(!User.Identity.IsAuthenticated)
 					{
 						<li class="nav-item">
-							<a class="nav-link" href="/account/login">Log In</a>
+							@* <a class="nav-link" href="/account/login">Log In</a> *@
+							<a class="nav-link" data-toggle="modal" data-target="#login-modal">Log In / Register</a>
 						</li>
-						<li class="nav-item">
+						@* <li class="nav-item">
 							<a class="nav-link" href="/account/register">Register</a>
-						</li>
+						</li> *@
 					}
 					else
 					{
@@ -44,9 +45,39 @@
 						<li class="nav-item">
 							<a class="nav-link" href="/account/cart">Your Shopping Cart</a>
 						</li>
+						<li class="nav-item">
+							<form asp-controller="Account" asp-action="Logoff" method="post">
+								<button class="nav-link logout-button" type="submit">Log Out</button>
+							</form>
+						</li>
 					}
         </ul>
       </nav>
+
+			<div class="modal" id="login-modal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<ul class="nav nav-tabs">
+								<li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#login-modal-tab">Login</a></li>
+								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#register-modal-tab">Register</a></li>
+							</ul>
+							<button type="button" class="close btn btn-warning" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body tab-content">
+							<div id="login-modal-tab" class="tab-pane fade in active">
+								<h5>Login</h5>
+								@Html.Partial("_Login")
+							</div>
+							<div id="register-modal-tab" class="tab-pane fade">
+								<h5>Register</h5>
+								@Html.Partial("_Register")
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
       <div class="content">
         @RenderBody()
       </div>

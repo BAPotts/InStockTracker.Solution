@@ -10,6 +10,10 @@
   <div class="card">
     <div class="card-header"><h4 class="card-title">@product.Name</h4></div>
     <div class="card-body">
+      @if(product.Images.Count()!=0)
+      {
+        <img class="categories-image" src="@ViewBag.ImageDictionary[product.Name]" />
+      }
       <p>@product.Description</p>
       <p>@product.Manufacturer</p>
       <p>@product.Price.ToString("C")</p>

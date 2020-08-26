@@ -95,6 +95,18 @@ namespace InStockTracker.Controllers
     }
 
     [AllowAnonymous]
+    [HttpPost]
+    public async Task<ActionResult> ModalRegister(string userEmail, string userPassword, string userConfirmPassword)
+    {
+      User thisUser = new User { UserName = userEmail };
+      if (userPassword == userConfirmPassword)
+      {
+        await _userManager.CreateAsync(thisUser, userPassword);
+      }
+      return RedirectToAction("Index", "Home");
+    }
+
+    [AllowAnonymous]
     public ActionResult Login()
     {
       return View();
@@ -113,6 +125,14 @@ namespace InStockTracker.Controllers
       {
         return View();
       }
+    }
+
+    [AllowAnonymous]
+    [HttpPost]
+    public async Task<ActionResult> LoginModal(string userEmail, string userPassword)
+    {
+      Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(userEmail, userPassword, isPersistent: true, lockoutOnFailure: false);
+      return RedirectToAction("Index", "Home");
     }
 
     [HttpPost]

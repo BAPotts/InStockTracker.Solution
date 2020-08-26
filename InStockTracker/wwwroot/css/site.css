@@ -70,8 +70,16 @@ body {
 }
 
 .card {
-  text-align: center;
+  text-align: center !important;
   margin-top: 1rem;
+}
+
+.card-footer {
+  text-align: center !important;
+}
+
+.card-form {
+  text-align: center;
 }
 
 .card-header {
@@ -81,6 +89,10 @@ body {
 
 .carousel-inner {
   text-align: center;
+}
+
+.cart-card-list {
+  text-align: left;
 }
 
 .categories-image {
@@ -94,6 +106,14 @@ body {
 .details-image {
   max-height: 30rem;
   max-width: 30rem;
+}
+
+.form-inline {
+  text-align: center !important;
+}
+
+.input-group {
+  text-align: center;
 }
 
 .navbar > a {
@@ -114,6 +134,27 @@ body {
   width: 62%;
 }
 
+.product-details-btn {
+  border-radius: 1rem;
+}
+
+.product-details-header {
+  color: white ;
+}
+
+.register-header {
+  color: white;
+}
+
 #button-addon3 {
   color: solid black;
+}
+
+.logout-button {
+  background: inherit!important;
+  background-color: inherit!important;
+  color: #FFE1A8;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
 }
