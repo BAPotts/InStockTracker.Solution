@@ -9,6 +9,7 @@ namespace InStockTracker.Models
     public DbSet<Category> Categories { get; set; }
     public DbSet<CategoryProduct> CategoryProduct { get; set; }
     public DbSet<CartItem> CartItems { get; set; }
+    public DbSet<Image> Images { get; set; }
 
     public InStockTrackerContext(DbContextOptions options) : base(options) { }
 

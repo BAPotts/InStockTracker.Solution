@@ -8,6 +8,7 @@ namespace InStockTracker.Models
     public Product()
     {
       this.Categories = new HashSet<CategoryProduct>();
+      this.Images = new HashSet<Image>();
     }
     public int ProductId { get; set; }
     [Required(ErrorMessage = "Product name is required")]
@@ -22,8 +23,7 @@ namespace InStockTracker.Models
     [Required(ErrorMessage = "Stock is required")]
     [Range(1, 1000, ErrorMessage = "Stock must be between 1 and 1000")]
     public int Stock { get; set; }
-    public string ImgTitle { get; set; }
-    public byte[] Img { get; set; }
+    public virtual ICollection<Image> Images { get; set; }
     public virtual ICollection<CategoryProduct> Categories { get; set; }
 
     public static decimal ConvertPrice(string price)

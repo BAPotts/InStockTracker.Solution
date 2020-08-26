@@ -59,6 +59,11 @@ body {
 
 /* custom styles
 -------------------------------------------------------------- */
+
+.btn-info {
+  color: white !important;
+}
+
 .content {
   margin-top: 8rem;
 }
@@ -69,7 +74,12 @@ body {
 }
 
 .card-header, .navbar {
-  background-color: #5bc0de;
+  /* background-color: #5bc0de; */
+  background-color: #17a2b8;
+}
+
+.carousel-inner {
+  text-align: center;
 }
 
 .details-image {

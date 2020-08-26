@@ -59,11 +59,14 @@ namespace InStockTracker.Controllers
       var thisProduct = _db.Products
         .Include(category => category.Categories)
         .ThenInclude(join => join.Category)
+        .Include(product => product.Images)
         .FirstOrDefault(product => product.ProductId == id);
-      if (!string.IsNullOrEmpty(thisProduct.ImgTitle))
+      List<string> ImageData = new List<string>();
+      foreach(var entry in thisProduct.Images)
       {
-        ViewBag.ImageDataUrl = RetrieveImage(id);
+        ImageData.Add(RetrieveImage(entry.ImageId));
       }
+      ViewBag.ImageDataURL = ImageData;
       return View(thisProduct);
     }
 
@@ -109,28 +112,10 @@ namespace InStockTracker.Controllers
       return View(thisProduct);
     }
 
-    [HttpPost]
-    public IActionResult UploadPhoto(int ProductId)
+    private string RetrieveImage(int ImageId)
     {
-      Product thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == ProductId);
-      thisProduct.ImgTitle = "FileName";
-      foreach(var file in Request.Form.Files)
-      {
-        MemoryStream ms = new MemoryStream();
-        file.CopyTo(ms);
-        thisProduct.Img = ms.ToArray();
-        ms.Close();
-        ms.Dispose();
-        _db.SaveChanges();
-      }
-
-      return RedirectToAction("Details", new { id = ProductId });
-    }
-
-    private string RetrieveImage(int id)
-    {
-      Product thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == id);
-      string imageBase64Data = Convert.ToBase64String(thisProduct.Img);
+      Image image = _db.Images.First(images => images.ImageId == ImageId);
+      string imageBase64Data = Convert.ToBase64String(image.Img);
       string imageDataURL = string.Format("data:image/jpg;base64, {0}", imageBase64Data);
       return imageDataURL;
     }
