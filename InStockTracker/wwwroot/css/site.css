@@ -43,7 +43,8 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  background-image: linear-gradient(#FABC3C, #E5625E);
+  /* background-image: linear-gradient(#FABC3C, #E5625E); */
+  background-image: linear-gradient(to bottom right, #FABC3C, #E5625E);
   margin-bottom: 60px;
 }
 
@@ -73,12 +74,20 @@ body {
   margin-top: 1rem;
 }
 
-.card-header, .navbar {
-  /* background-color: #5bc0de; */
+.card-header {
+  color: white;
   background-color: #17a2b8;
 }
 
 .carousel-inner {
+  text-align: center;
+}
+
+.categories-image {
+  width: 100%;
+}
+
+.col-md-6 {
   text-align: center;
 }
 
@@ -96,8 +105,8 @@ body {
   width: 80%;
 }
 
-.nav-link {
-  color: #972d07;
+.navbar {
+  background-color: #17a2b8;
 }
 
 .nav-logo {
@@ -107,8 +116,4 @@ body {
 
 #button-addon3 {
   color: solid black;
-}
-
-#navbardrop {
-  color: #972d07;
 }
