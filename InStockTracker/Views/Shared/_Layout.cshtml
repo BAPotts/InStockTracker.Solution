@@ -4,11 +4,11 @@
 <html>
 	<head>
 		<title>In Stock Tracker</title>
+		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="~/css/site.css" />
 		<script src="~/lib/jquery/dist/jquery.js"></script>
 		<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
 		<script src="~/js/site.js"></script>
-		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-		<link rel="stylesheet" href="~/css/site.css" />
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -24,7 +24,7 @@
             <div class="dropdown-menu">
               <a href="/products/index" class="dropdown-item">Full Catalog</a>
 							<a href="/products/create" class="dropdown-item">Add an Item</a>
-							<a href="/home/search" class="dropdown-item">Super Search</a>
+							<a href="/products/search" class="dropdown-item">Super Search</a>
             </div>
           </li>
 					@if(!User.Identity.IsAuthenticated)

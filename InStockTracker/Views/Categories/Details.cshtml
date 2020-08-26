@@ -5,7 +5,7 @@
 @using InStockTracker.Models
 @model InStockTracker.Models.Category
 
-<h1>@Model.Title</h1>
+<img src="~/img/@Model.Title.ToLower()logo.png" alt="@Model.Title">
 
 <div class="card-columns">
   @foreach(var join in Model.Products)
@@ -13,6 +13,10 @@
   <div class="card">
     <div class="card-header"><h4 class="card-title">@join.Product.Name</h4></div>
     <div class="card-body">
+      @if(ViewBag.ProductNames.Contains(join.Product.Name))
+      {
+        <img class="categories-image" src="@ViewBag.ImageDictionary[join.Product.Name]"/>
+      }  
       <p>@join.Product.Description</p>
       <p>@join.Product.Manufacturer</p>
       <p>@join.Product.Price.ToString("C")</p>
