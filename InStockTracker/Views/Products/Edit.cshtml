@@ -15,7 +15,7 @@
     @Html.TextBoxFor(model => model.Name, new { @class="form-control" })
 
     @Html.LabelFor(model => model.Price)
-    @Html.TextBoxFor(model => model.Price, new { @class="form-control", @pattern="[$][0-9]+.[0-9]{2}" })
+    <input class="form-control" name="Price" type="number" min="0.01" max="5000" step="0.01" >
 
     @Html.LabelFor(model => model.Manufacturer)
     @Html.TextBoxFor(model => model.Manufacturer, new { @class="form-control" })
@@ -29,7 +29,7 @@
     @foreach (Category name in ViewBag.CategoryId)
     {
       <label>@name.Title</label>
-      @Html.CheckBox("CategoryId", false, new {name.CategoryId })
+      @Html.CheckBox("categoryId", false, new { @value=name.CategoryId })
     }
   </div>
   <input type="submit" value="Edit Product" class="btn" />
