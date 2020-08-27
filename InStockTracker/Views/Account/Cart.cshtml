@@ -13,7 +13,7 @@
     <table class="table table-bordered">
     <thead>
       <tr>
-        <th colspan="5">Cart @Model.Count item(s)</th>
+        <th scope="col" colspan="5">Cart @Model.Count item(s)</th>
       </tr>
     </thead>
     <tbody>
@@ -22,25 +22,26 @@
       {
         decimal itemPrice = item.Product.Price * item.Quantity;
         total += itemPrice;
-        @if(ViewBag.ProductNames.Contains(item.Product.Name))
-        {
-        <td class="img-thumbnail"><img src="@ViewBag.ImageDictionary[item.Product.Name]" /></td>
-        }
-        else
-        {
-          <td>Img</td>
-        }
-        <td>@item.Product.Name</td>
-        <td>Qty: @item.Quantity</td>
-        <td>Price: @itemPrice.ToString("C")</td>
-        <td>
-          @using (Html.BeginForm("DeleteCartItem", "Account"))
+        <tr class="d-flex" scope="row">
+          @if(ViewBag.ProductNames.Contains(item.Product.Name))
           {
-            @Html.Hidden("cartItemId", item.CartItemId)
-            @* <input type="submit" value="Delete" class="btn btn-danger"> *@
-            <input type="submit" class="btn btn-danger" value=&times; />
+            <td><img class="img-thumbnail" src="@ViewBag.ImageDictionary[item.Product.Name]" /></td>
           }
-        </td>
+          else
+          {
+            <td>Img</td>
+          }
+          <td>@item.Product.Name</td>
+          <td>Qty: @item.Quantity</td>
+          <td>Price: @itemPrice.ToString("C")</td>
+          <td>
+            @using (Html.BeginForm("DeleteCartItem", "Account"))
+            {
+              @Html.Hidden("cartItemId", item.CartItemId)
+              <input type="submit" class="btn btn-danger" value=&times; />
+            }
+          </td>
+        </tr>
       }
       <tr><td colspan="5"><strong>Total: </strong>@total.ToString("C")</td></tr>
     </tbody>

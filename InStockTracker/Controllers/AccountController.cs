@@ -39,7 +39,9 @@ namespace InStockTracker.Controllers
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       var userCartItems = _db.CartItems.Where(item => item.User.Id == currentUser.Id)
-        .Include(item => item.Product).ToList();
+        .Include(item => item.Product)
+        .ThenInclude(p => p.Images)
+        .ToList();
       
       List<string> productNames = new List<string>();
       Dictionary<string, string> productImages = new Dictionary<string, string>();

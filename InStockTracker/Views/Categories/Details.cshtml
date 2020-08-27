@@ -15,7 +15,7 @@
     <div class="card-body">
       @if(ViewBag.ProductNames.Contains(join.Product.Name))
       {
-        <img class="categories-image" src="@ViewBag.ImageDictionary[join.Product.Name]"/>
+        <img class="categories-image img-thumbnail w-50" src="@ViewBag.ImageDictionary[join.Product.Name]"/>
       }  
       <p>@join.Product.Description</p>
       <p>@join.Product.Manufacturer</p>
