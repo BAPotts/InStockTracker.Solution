@@ -7,6 +7,7 @@ using InStockTracker.ViewModels;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Collections.Generic;
 
 namespace InStockTracker.Controllers
 {
@@ -39,6 +40,21 @@ namespace InStockTracker.Controllers
       var currentUser = await _userManager.FindByIdAsync(userId);
       var userCartItems = _db.CartItems.Where(item => item.User.Id == currentUser.Id)
         .Include(item => item.Product).ToList();
+      
+      List<string> productNames = new List<string>();
+      Dictionary<string, string> productImages = new Dictionary<string, string>();
+      foreach(var join in userCartItems)
+      {
+        if (join.Product.Images.Any())
+        {
+          string ImageData = Image.RetrieveImage(join.Product.Images[0]);
+          productNames.Add(join.Product.Name);
+          productImages.Add(join.Product.Name, ImageData);
+        }
+      }
+      ViewBag.ProductNames = productNames;
+      ViewBag.ImageDictionary = productImages;
+
       return View(userCartItems);
     }
 
