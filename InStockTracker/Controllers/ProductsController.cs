@@ -39,7 +39,7 @@ namespace InStockTracker.Controllers
       {
         if (product.Images.Any())
         {
-          string ImageData = RetrieveImage(product.Images[0].ImageId);
+          string ImageData = Image.RetrieveImage(product.Images[0]);
           productImages.Add(product.Name, ImageData);
         }
       }
@@ -77,7 +77,7 @@ namespace InStockTracker.Controllers
       List<string> ImageData = new List<string>();
       foreach(var entry in thisProduct.Images)
       {
-        ImageData.Add(RetrieveImage(entry.ImageId));
+        ImageData.Add(Image.RetrieveImage(entry));
       }
       ViewBag.ImageDataURL = ImageData;
       return View(thisProduct);
@@ -133,14 +133,6 @@ namespace InStockTracker.Controllers
     {
       Product thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == id);
       return View(thisProduct);
-    }
-
-    private string RetrieveImage(int ImageId)
-    {
-      Image image = _db.Images.First(images => images.ImageId == ImageId);
-      string imageBase64Data = Convert.ToBase64String(image.Img);
-      string imageDataURL = string.Format("data:image/jpg;base64, {0}", imageBase64Data);
-      return imageDataURL;
     }
 
     public ActionResult Search()
